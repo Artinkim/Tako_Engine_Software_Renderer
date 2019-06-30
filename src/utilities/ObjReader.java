@@ -8,44 +8,46 @@ import java.util.ArrayList;
 import math.Vector3;
 
 public class ObjReader {
-	public ArrayList<Vector3> vectors = new ArrayList<Vector3>();
-	public void getVertices(String file){
+	public ArrayList<Vector3> allVectors = new ArrayList<Vector3>();
+	public ArrayList<Vector3> faceVectors = new ArrayList<Vector3>();
+	public ArrayList<Vector3> getVerticesFromObjFile(String file){
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String str = br.readLine();
-			int count = 0;
-			String temp = "";
 			float x = 0;
 			float y = 0;
 			float z = 0;
 			while(str!=null) {
-				count = 0;
-				if(str.charAt(0) == 'v') {
-					System.out.println(str);
-					for(int i = 2;i<str.length();i++) {
-						if(str.charAt(i) != ' ') {
-							temp+=str.charAt(i);
-						} else {
-							if(count == 0) {
-								x = Float.parseFloat(temp);
-								System.out.println(x);
-							} else if(count == 1){
-								y = Float.parseFloat(temp);
-							}
-							count++;
-							temp = "";
+				String[] arr = str.split(" ");
+				if(arr[0].equals("v")) {
+					x = Float.parseFloat(arr[1]);
+					y = Float.parseFloat(arr[2]);
+					z = Float.parseFloat(arr[3]);
+					allVectors.add(new Vector3(x,y,z));
+				}
+				if(arr[0].equals("f")) {
+					String[] arr2;
+					for(int i = 1;i<arr.length-1;i++) {
+						 arr2 = arr[i].split("/");
+						faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
+					}
+					if(arr.length>4) {
+						for(int i = 3;i<arr.length-1;i++) {
+							arr2 = arr[i].split("/");
+							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
+							arr2 = arr[i-1].split("/");
+							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
+							arr2 = arr[i+1].split("/");
+							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
 						}
 					}
 				}
 				str = br.readLine();
-			}
+			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	public static void main(String[] args) {
-		new ObjReader().getVertices("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/plane.obj");
-		
+		return faceVectors;	
 	}
 }
