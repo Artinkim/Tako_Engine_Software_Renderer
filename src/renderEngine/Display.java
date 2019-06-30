@@ -234,6 +234,11 @@ public class Display {
 		}
 	}
 	
+	public void renderVertecies(Vector3[] arr) {
+		for(int i = 0;i<arr.length;i+=3) {
+			renderTriangle(new Vector2(arr[i].x,arr[i].y),new Vector2(arr[i+1].x,arr[i+1].y),new Vector2(arr[i+2].x,arr[i+2].y),new Vector4(1,0,0,1));
+		}
+	}
 	public void renderPoint(Vector2 point, Vector4 color) {
 		int x = (int) (((point.x+1f)*0.5f) * frame.getWidth());
 		int y = (int) (((point.y+1f)*0.5f) * frame.getHeight());
