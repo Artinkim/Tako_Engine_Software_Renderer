@@ -16,10 +16,10 @@ public class Runner {
 	public Runner() {
 		display = new Display(720, 720);
 		display.clearBackBuffer(0, 0, 0, 1);
-		display.renderTriangle(new Vector2(0f, 1f), new Vector2(-1f, 0.5f), new Vector2(1f, 1f), new Vector4(255f, 0, 0, 255f));		
-		display.swapBuffers();
-		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("C:\\Users\\Artin\\git\\Tako_Engine_Software_Renderer\\src\\utilities\\plane.obj");
+				
+		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/monkey2.obj");
 		display.renderVertecies(verts);
+		display.swapBuffers();
 	}
 	
 	public static void main(String[] args) {

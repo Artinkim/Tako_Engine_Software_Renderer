@@ -21,8 +21,8 @@ public class ObjReader {
 				String[] arr = str.split(" ");
 				if(arr[0].equals("v")) {
 					x = Float.parseFloat(arr[1]);
-					y = Float.parseFloat(arr[2]);
-					z = Float.parseFloat(arr[3]);
+					z = Float.parseFloat(arr[2]);
+					y = Float.parseFloat(arr[3]);
 					allVectors.add(new Vector3(x,y,z));
 				}
 				if(arr[0].equals("f")) {
@@ -35,9 +35,9 @@ public class ObjReader {
 						for(int i = 3;i<arr.length-1;i++) {
 							arr2 = arr[i].split("/");
 							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
-							arr2 = arr[i-1].split("/");
-							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
 							arr2 = arr[i+1].split("/");
+							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
+							arr2 = arr[1].split("/");
 							faceVectors.add(allVectors.get(Integer.parseInt(arr2[0])-1));
 						}
 					}

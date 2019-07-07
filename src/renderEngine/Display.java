@@ -39,6 +39,7 @@ public class Display {
 		frame.setResizable(false);
 	}
 	
+	
 	public void renderTriangle(Vector2 v1, Vector2 v2, Vector2 v3, Vector4 color) {
 		v1 = new Vector2((v1.x + 1f)*0.5f*display.getWidth(), (v1.y + 1f)*0.5f*display.getHeight());
 		v2 = new Vector2((v2.x + 1f)*0.5f*display.getWidth(), (v2.y + 1f)*0.5f*display.getHeight());
@@ -164,8 +165,7 @@ public class Display {
 				endXs[i] = (int) v3.x;
 			}
 		}
-		System.out.println(startXs[0]);
-		System.out.println(endXs[0]);
+		
 		int ctr = 0;
 		for (int y = (int) v3.y; y < v2.y; y++) {
 			if(ctr<startXs.length || ctr<endXs.length) {
