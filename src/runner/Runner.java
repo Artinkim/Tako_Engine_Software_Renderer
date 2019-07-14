@@ -17,7 +17,7 @@ public class Runner {
 		display = new Display(720, 720);
 		display.clearBackBuffer(0, 0, 0, 1);
 				
-		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/monkey2.obj");
+		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/hex.obj");
 		display.renderVertecies(verts);
 		display.swapBuffers();
 	}
