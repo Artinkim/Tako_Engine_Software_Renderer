@@ -17,7 +17,14 @@ public class Runner {
 		display = new Display(720, 720);
 		display.clearBackBuffer(0, 0, 0, 1);
 				
-		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/hex.obj");
+		ArrayList<Vector3> verts = new ObjReader().getVerticesFromObjFile("/Users/league/git/Tako_Engine_Software_Renderer/src/utilities/monkey.obj");
+		for(int i = 0;i<verts.size();i++) {
+			System.out.print(verts.get(i).x);
+			System.out.print(verts.get(i).y);
+			System.out.println();
+		}
+		display.renderTriangle(new Vector2(1.0f,0.0f),new Vector2(0.0f,1.0f),new Vector2(-1.0f,0.0f),new Vector4(255f, 0, 0, 255f));
+		display.renderTriangle(new Vector2(-1.0f, 0f),new Vector2(-0.75f,-0.75f),new Vector2(0.0f,0.0f),new Vector4(255f, 0, 0, 255f));
 		display.renderVertecies(verts);
 		display.swapBuffers();
 	}
