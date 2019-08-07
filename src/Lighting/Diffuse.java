@@ -16,4 +16,17 @@ public class Diffuse {
 		normalz = (U.x*V.y)-(U.y*V.x);
 		return new Vector3(normalx,normaly,normalz);
 	}
+	public static Vector3 calculateTrianglCenter(Vector3 v1,Vector3 v2,Vector3 v3) {
+		return new Vector3((v1.x+v2.x+v3.x)/3,(v1.y+v2.y+v3.y)/3,(v1.z+v2.z+v3.z)/3);
+	}
+	public static Vector3 calculateLightVectorFromPoint(Light light,Vector3 v) {
+		return Vector3.sub(light.pos,v);
+	}
+	public static float calculateAngleBetweenVectors(Vector3 triangleVector,Vector3 lightVector) {
+		float traingleMagnatude = (float) Math.sqrt(triangleVector.x*triangleVector.x+triangleVector.y*triangleVector.y+triangleVector.z*triangleVector.z);
+		float lightMagnatude = (float) Math.sqrt(lightVector.x*lightVector.x+lightVector.y*lightVector.y+lightVector.z*lightVector.z);
+		Vector3 dotVector = Vector3.mult(triangleVector,lightVector);
+		float dot = dotVector.x+dotVector.y+dotVector.z;
+		return dot/(lightMagnatude*traingleMagnatude);
+	}
 }
