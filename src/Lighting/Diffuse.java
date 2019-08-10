@@ -23,10 +23,13 @@ public class Diffuse {
 		return Vector3.sub(light.pos,v);
 	}
 	public static float calculateAngleBetweenVectors(Vector3 triangleVector,Vector3 lightVector) {
-		float traingleMagnatude = (float) Math.sqrt(triangleVector.x*triangleVector.x+triangleVector.y*triangleVector.y+triangleVector.z*triangleVector.z);
+		float triangleMagnatude = (float) Math.sqrt(triangleVector.x*triangleVector.x+triangleVector.y*triangleVector.y+triangleVector.z*triangleVector.z);
 		float lightMagnatude = (float) Math.sqrt(lightVector.x*lightVector.x+lightVector.y*lightVector.y+lightVector.z*lightVector.z);
-		Vector3 dotVector = Vector3.mult(triangleVector,lightVector);
-		float dot = dotVector.x+dotVector.y+dotVector.z;
-		return dot/(lightMagnatude*traingleMagnatude);
+		float dot = triangleVector.x*lightVector.x+triangleVector.y*lightVector.y+triangleVector.z*lightVector.z;
+		System.out.println("dot:"+dot);
+		System.out.println("lightMagnatude:"+lightMagnatude);
+		System.out.println("triangleMagnatude:"+triangleMagnatude);
+		System.out.println((1/Math.cos(dot/lightMagnatude*triangleMagnatude)));
+		return (float) ((Math.acos(dot/Math.abs(lightMagnatude)*Math.abs(triangleMagnatude)))*180/Math.PI);
 	}
 }
