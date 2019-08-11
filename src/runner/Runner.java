@@ -18,6 +18,17 @@ public class Runner {
 	public Runner() {
 		display = new Display(720, 720);
 		display.clearBackBuffer(0, 0, 0, 1);	
+		ObjReader reader = new ObjReader();
+		ArrayList<Vector3> faceVectors = reader.getVerticesFromObjFile("/Users/Artin/git/Tako_Engine_Software_Renderer/src/utilities/cube.obj");
+		display.renderVertecies(faceVectors);
+		display.swapBuffers();
+	}
+	
+	public static void main(String[] args) {
+		new Runner();
+		
+	}
+	public static void diffuseLightingTest(Display display) {
 		Vector3 v1 = new Vector3(0.0f,0.0f,0.0f);
 		Vector3 v2 = new Vector3(0.5f,1.0f,0.0f);
 		Vector3 v3 = new Vector3(1.0f,0.0f,0.0f);
@@ -45,13 +56,6 @@ public class Runner {
 		display.renderTriangle(new Vector2(v1.x,v1.y),new Vector2(v2.x,v2.y),new Vector2(v3.x,v3.y),new Vector4(255-(degree/90)*255, 0, 0, 255f));
 		display.renderTriangle(new Vector2((float)(triangleCenter.x-0.01),(float)(triangleCenter.y-0.01)),new Vector2(triangleCenter.x,triangleCenter.y),new Vector2((float)(triangleCenter.x+0.01),(float)(triangleCenter.y-0.01)),new Vector4(0, 255f, 0, 255f));
 		display.renderTriangle(new Vector2((float)(light.pos.x-0.01),(float)(light.pos.y-0.01)),new Vector2(light.pos.x,light.pos.y),new Vector2((float)(light.pos.x+0.01),(float)(light.pos.y-0.01)),new Vector4(0, 0, 255f, 255f));
-
-		display.swapBuffers();
-	}
-	
-	public static void main(String[] args) {
-		new Runner();
-		
 	}
 	
 }

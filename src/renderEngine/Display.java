@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import Lighting.Diffuse;
+import Lighting.Light;
 import math.*;
 
 public class Display {
@@ -263,10 +265,8 @@ public class Display {
 	}
 	
 	public void renderVertecies(ArrayList<Vector3> arr) {
-		System.out.println(arr.size());
 		for(int i = 0;i<arr.size();i+=3) {
-			System.out.println(i);
-			renderTriangle(new Vector2(arr.get(i).x,arr.get(i).y),new Vector2(arr.get(i+1).x,arr.get(i+1).y),new Vector2(arr.get(i+2).x,arr.get(i+2).y),new Vector4(255f, 0, 0, 255f));
+			renderTriangle(new Vector2(arr.get(i).x,arr.get(i).y),new Vector2(arr.get(i+1).x,arr.get(i+1).y),new Vector2(arr.get(i+2).x,arr.get(i+2).y),Diffuse.calculateTraingleDiffuse(arr.get(i), arr.get(i+1), arr.get(i+2), new Light(0.5f,0.0f,1.0f), new Vector4(255f, 0, 0, 255f)));
 		}
 	}
 	public void renderPoint(Vector2 point, Vector4 color) {
